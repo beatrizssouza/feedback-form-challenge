@@ -1,54 +1,101 @@
-# React + TypeScript + Vite
+# Feedback Form Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Visão Geral
+Este projeto é uma pequena aplicação **React 18** + **TypeScript** criada para o desafio de frontend que consiste em desenvolver um formulário com três campos — **Full Name**, **Email** e **Feedback** — seguindo o layout fornecido no Figma.
 
-Currently, two official plugins are available:
+O objetivo é demonstrar:
+* Componentização genérica e reutilizável (Clean Architecture)
+* Validação de formulários com **React Hook Form** + **Zod**
+* Estilização rápida e consistente com **Tailwind CSS**
+* Código limpo, organizado e fácil de entender
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## Tecnologias
+| Ferramenta | Uso |
+|------------|-----|
+| React 18   | Biblioteca UI principal |
+| TypeScript | Tipagem estática |
+| Vite       | Bundler/dev-server super-rápido |
+| Tailwind CSS | Utilitários de estilo |
+| PostCSS + Autoprefixer | Pipeline CSS + compatibilidade de browsers |
+| React Hook Form | Gerência de estado/validação do form |
+| Zod        | Schemas de validação tipados |
+| @hookform/resolvers | Integra Zod ao React Hook Form |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Estrutura de Pastas (Sugerida)
+```
+src/
+├── components/
+│   ├── ui/              
+│   │   ├── Button.tsx
+│   │   ├── Card.tsx
+│   │   └── TextField.tsx
+│   └── index.ts          
+├── screens/
+│   └── FeedbackForm/
+│       ├── FeedbackForm.tsx   # Tela principal
+│       └── index.ts
+├── hooks/
+├── types/                # Tipagens globais
+├── App.tsx               # Entry da UI
+└── main.tsx             
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Componentes Genéricos
+| Componente | Responsabilidade |
+|------------|------------------|
+| `Card`     | Container visual com padding, borda, sombra opcional |
+| `Button`   | Botão estilizado (`variant` primary/secondary etc.) |
+| `TextField`| Wrapper de `<input>`/`<textarea>` com label, erro, integração RHF |
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## Critérios de Validação
+| Campo | Regras |
+|-------|--------|
+| Full Name | Obrigatório |
+| Email | Obrigatório + formato de e-mail *(bonus)* |
+| Feedback | Obrigatório |
+
+A validação é declarada em um **schema Zod** e conectada ao React Hook Form via `zodResolver`. Mensagens de erro são exibidas próximo ao campo correspondente.
+
+---
+
+## Scripts
+```bash
+# instala dependências
+npm install
+
+# ambiente de desenvolvimento
+npm run dev
+
+# build de produção
+npm run build
+
+# preview do build
+npm run preview
+
+# lint
+npm run lint
 ```
+
+---
+
+## Como Rodar
+1. `git clone <repo>`
+2. `cd feedback-form-challenge && npm install`
+3. `npm run dev`
+4. Acesse `http://localhost:5173` no navegador.
+
+---
+
+## Próximos Passos
+* Testes unitários de componentes (React Testing Library + Vitest)
+* A11y: gerenciar foco, `aria-*` etc.
+* Deploy em Vercel / Netlify
+
+---
+**Happy coding!**
