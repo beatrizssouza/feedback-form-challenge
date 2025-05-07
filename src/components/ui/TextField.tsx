@@ -1,4 +1,3 @@
-import clsx from 'clsx'
 import { Controller, type FieldValues } from 'react-hook-form'
 import type { TextFieldProps } from '../../types/textfield'
 
@@ -10,32 +9,29 @@ function TextField<T extends FieldValues>({
   className = '',
   inputProps,
 }: TextFieldProps<T>) {
-  const baseInput =
-    'block w-full rounded-md px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-primary focus:border-primary'
-  const colorNeutral =
-    'border border-gray-300 bg-white text-gray-900 placeholder-gray-400 dark:border-neutral-600 dark:bg-neutral-800 dark:text-gray-100'
-  const colorError = 'border-red-600 focus:border-red-600 focus:ring-red-600'
-
   return (
     <Controller
       name={name}
       control={control}
       render={({ field, fieldState }) => (
-        <div className={clsx('mb-4', className)}>
-          <label className="mb-1 block text-sm font-medium" htmlFor={name}>
+        <div className={`mb-4 ${className}`}>
+          <label
+            className="mb-1 block text-sm font-semibold text-gray-700"
+            htmlFor={name}
+          >
             {label}
           </label>
           {textarea ? (
             <textarea
               id={name}
-              className={clsx(baseInput, fieldState.error ? colorError : colorNeutral)}
+              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900 placeholder-gray-400 min-h-[100px] ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
               {...field}
               {...inputProps}
             />
           ) : (
             <input
               id={name}
-              className={clsx(baseInput, fieldState.error ? colorError : colorNeutral)}
+              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900 placeholder-gray-400 ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
               {...field}
               {...inputProps}
             />
