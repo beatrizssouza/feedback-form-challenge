@@ -16,10 +16,13 @@ const FeedbackMessage = ({
       setIsVisible(true)
       const timer = setTimeout(() => {
         setIsVisible(false)
+        if (rest.onHide) {
+          rest.onHide()
+        }
       }, 5000)
       return () => clearTimeout(timer)
     }
-  }, [show])
+  }, [show, rest.onHide])
 
   if (!show && !isVisible) return null
 

@@ -7,4 +7,5 @@ export interface FeedbackMessageProps extends HTMLAttributes<HTMLDivElement> {
   title: string
   message: string
   show: boolean
+  onHide?: () => void
 }

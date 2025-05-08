@@ -18,6 +18,15 @@ export function FeedbackForm() {
       clearErrors()
     }
   }
+  
+  const handleMessageHide = () => {
+    if (formStatus === 'success') {
+      reset()
+      resetStatus()
+    } else {
+      resetStatus()
+    }
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -70,12 +79,14 @@ export function FeedbackForm() {
         title="Message sent!"
         message="Your message was successfully sent."
         show={formStatus === 'success'}
+        onHide={handleMessageHide}
       />
       <FeedbackMessage 
         type="error"
         title="Something went wrong!"
         message="Your message couldn't be sent."
         show={formStatus === 'error'}
+        onHide={handleMessageHide}
       />
     </div>
   )
