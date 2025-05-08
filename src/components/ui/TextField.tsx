@@ -25,7 +25,7 @@ function TextField<T extends FieldValues>({
           {textarea ? (
             <textarea
               id={name}
-              className={`block w-full p-3 border text-sm rounded-md min-h-[100px] ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-900'} placeholder-gray-400 ${!disabled && 'focus:outline-none focus:ring-2'} ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
+              className={`block w-full p-3 border text-sm rounded-md min-h-[100px] ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-900'} placeholder-gray-400 ${!disabled && 'focus:outline-none focus:ring-1'} ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
               disabled={disabled}
               {...field}
               {...inputProps}
@@ -33,7 +33,7 @@ function TextField<T extends FieldValues>({
           ) : (
             <input
               id={name}
-              className={`block w-full p-3 border text-sm rounded-md ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-900'} placeholder-gray-400 ${!disabled && 'focus:outline-none focus:ring-2'} ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
+              className={`block w-full p-3 border text-sm rounded-md ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-900'} placeholder-gray-400 ${!disabled && 'focus:outline-none focus:ring-1'} ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
               disabled={disabled}
               {...field}
               {...inputProps}
