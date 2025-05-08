@@ -7,5 +7,6 @@ export interface TextFieldProps<T extends FieldValues = FieldValues> {
   label: string
   textarea?: boolean
   className?: string
+  disabled?: boolean
   inputProps?: InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>
 }

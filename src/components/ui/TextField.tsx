@@ -7,6 +7,7 @@ function TextField<T extends FieldValues>({
   label,
   textarea = false,
   className = '',
+  disabled = false,
   inputProps,
 }: TextFieldProps<T>) {
   return (
@@ -16,7 +17,7 @@ function TextField<T extends FieldValues>({
       render={({ field, fieldState }) => (
         <div className={`mb-4 ${className}`}>
           <label
-            className="mb-1 block text-sm font-semibold text-gray-700"
+            className={`mb-1 block text-sm font-semibold ${disabled ? 'text-gray-400' : 'text-gray-700'}`}
             htmlFor={name}
           >
             {label}
@@ -24,14 +25,16 @@ function TextField<T extends FieldValues>({
           {textarea ? (
             <textarea
               id={name}
-              className={`block w-full p-3 border text-sm bg-white text-gray-900 placeholder-gray-400 min-h-[100px] rounded-md focus:outline-none focus:ring-2 ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
+              className={`block w-full p-3 border text-sm rounded-md min-h-[100px] ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-900'} placeholder-gray-400 ${!disabled && 'focus:outline-none focus:ring-2'} ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
+              disabled={disabled}
               {...field}
               {...inputProps}
             />
           ) : (
             <input
               id={name}
-              className={`block w-full p-3 border text-sm bg-white text-gray-900 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
+              className={`block w-full p-3 border text-sm rounded-md ${disabled ? 'bg-gray-100 text-gray-500 cursor-not-allowed' : 'bg-white text-gray-900'} placeholder-gray-400 ${!disabled && 'focus:outline-none focus:ring-2'} ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
+              disabled={disabled}
               {...field}
               {...inputProps}
             />
