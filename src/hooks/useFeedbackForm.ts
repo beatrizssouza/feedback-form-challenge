@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import type { FeedbackFormData } from '../types/feedback'
+import { useState } from 'react'
 
 const feedbackSchema = z.object({
   fullName: z.string()
@@ -18,6 +18,7 @@ const feedbackSchema = z.object({
 export type FeedbackFormSchema = z.infer<typeof feedbackSchema>
 
 export function useFeedbackForm() {
+  const [formStatus, setFormStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const form = useForm<FeedbackFormSchema>({
     resolver: zodResolver(feedbackSchema),
     defaultValues: {
@@ -28,12 +29,37 @@ export function useFeedbackForm() {
     mode: 'onBlur'
   })
 
-  const onSubmit = (data: FeedbackFormData) => {
+  const handleFormSubmit = (onValid: (data: FeedbackFormSchema) => void) => {
+    return form.handleSubmit(
+      (data) => {
+        try {
+          onValid(data)
+          setFormStatus('success')
+        } catch (error) {
+          console.error('Form submission error:', error)
+          setFormStatus('error')
+        }
+      },
+      () => {
+        console.error('Validation failed')
+        setFormStatus('error')
+      }
+    )
+  }
+
+  const resetStatus = () => {
+    setFormStatus('idle')
+  }
+
+  const onSubmit = (data: FeedbackFormSchema) => {
     console.log('Form submitted:', data)
   }
 
   return {
     ...form,
-    onSubmit
+    handleSubmit: handleFormSubmit,
+    onSubmit,
+    formStatus,
+    resetStatus
   }
 }

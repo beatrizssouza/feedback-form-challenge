@@ -3,11 +3,12 @@ import Card from '../../components/ui/Card'
 import TextField from '../../components/ui/TextField'
 import Button from '../../components/ui/Button'
 import ToggleSwitch from '../../components/ui/ToggleSwitch'
+import FeedbackMessage from '../../components/ui/FeedbackMessage'
 import { useState } from 'react'
 
 export function FeedbackForm() {
   const [isDisabled, setIsDisabled] = useState(false)
-  const { control, handleSubmit, onSubmit, reset, clearErrors } = useFeedbackForm()
+  const { control, handleSubmit, onSubmit, reset, clearErrors, formStatus, resetStatus } = useFeedbackForm()
 
   const handleToggleDisabled = () => {
     const newDisabled = !isDisabled
@@ -31,7 +32,7 @@ export function FeedbackForm() {
       <h1 className="text-xl font-bold text-gray-900 mb-1">Share your feedback</h1>
       <p className="text-sm text-gray-500 mb-6">We would love to hear your thoughts.</p>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <TextField name="fullName" control={control} label="Full Name" className="mb-4" disabled={isDisabled} inputProps={{ placeholder: 'Insert your full name' }} />
 
         <TextField
@@ -53,11 +54,29 @@ export function FeedbackForm() {
           className="mb-6"
         />
 
-        <Button type="submit" fullWidth disabled={isDisabled}>
+        <Button 
+          type="submit" 
+          fullWidth 
+          disabled={isDisabled}
+          onClick={formStatus !== 'idle' ? resetStatus : undefined}
+        >
           Share feedback
         </Button>
       </form>
     </Card>
+
+      <FeedbackMessage 
+        type="success"
+        title="Message sent!"
+        message="Your message was successfully sent."
+        show={formStatus === 'success'}
+      />
+      <FeedbackMessage 
+        type="error"
+        title="Something went wrong!"
+        message="Your message couldn't be sent."
+        show={formStatus === 'error'}
+      />
     </div>
   )
 }
