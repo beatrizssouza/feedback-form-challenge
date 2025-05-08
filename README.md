@@ -7,7 +7,6 @@ O objetivo é demonstrar:
 * Componentização genérica e reutilizável (Clean Architecture)
 * Validação de formulários com **React Hook Form** + **Zod**
 * Estilização rápida e consistente com **Tailwind CSS**
-* Código limpo, organizado e fácil de entender
 
 ---
 
@@ -25,31 +24,39 @@ O objetivo é demonstrar:
 
 ---
 
-## Estrutura de Pastas (Sugerida)
+## Estrutura de Pastas
 ```
 src/
 ├── components/
-│   ├── ui/              
+│   ├── ui/
 │   │   ├── Button.tsx
 │   │   ├── Card.tsx
-│   │   └── TextField.tsx
-│   └── index.ts          
+│   │   ├── FeedbackMessage.tsx
+│   │   ├── TextField.tsx
+│   │   └── ToggleSwitch.tsx
+│   └── index.ts
+├── hooks/
+│   └── useFeedbackForm.ts
 ├── screens/
 │   └── FeedbackForm/
-│       ├── FeedbackForm.tsx   # Tela principal
-│       └── index.ts
-├── hooks/
-├── types/                # Tipagens globais
-├── App.tsx               # Entry da UI
-└── main.tsx             
+│       └── index.tsx
+├── types/
+│   └── feedbackMessage.ts
+├── tasks/
+├── assets/
+├── tailwind.css
+├── App.tsx
+└── main.tsx
 ```
 
 ### Componentes Genéricos
 | Componente | Responsabilidade |
 |------------|------------------|
-| `Card`     | Container visual com padding, borda, sombra opcional |
-| `Button`   | Botão estilizado (`variant` primary/secondary etc.) |
-| `TextField`| Wrapper de `<input>`/`<textarea>` com label, erro, integração RHF |
+| `Card`              | Container visual com padding, borda e sombra opcional |
+| `Button`            | Botão estilizado com variantes e estados de hover/disabled |
+| `TextField`         | Wrapper de `<input>`/`<textarea>` com label, mensagem de erro e integração com RHF |
+| `FeedbackMessage`   | Toast de sucesso/erro com animação de fade-in/out e auto-hide |
+| `ToggleSwitch`      | Componente de alternância booleano (on/off) estilizado |
 
 ---
 
@@ -60,26 +67,13 @@ src/
 | Email | Obrigatório + formato de e-mail *(bonus)* |
 | Feedback | Obrigatório |
 
-A validação é declarada em um **schema Zod** e conectada ao React Hook Form via `zodResolver`. Mensagens de erro são exibidas próximo ao campo correspondente.
-
----
 
 ## Scripts
 ```bash
 # instala dependências
 npm install
-
 # ambiente de desenvolvimento
 npm run dev
-
-# build de produção
-npm run build
-
-# preview do build
-npm run preview
-
-# lint
-npm run lint
 ```
 
 ---
@@ -92,10 +86,3 @@ npm run lint
 
 ---
 
-## Próximos Passos
-* Testes unitários de componentes (React Testing Library + Vitest)
-* A11y: gerenciar foco, `aria-*` etc.
-* Deploy em Vercel / Netlify
-
----
-**Happy coding!**
