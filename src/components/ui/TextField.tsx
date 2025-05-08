@@ -24,14 +24,14 @@ function TextField<T extends FieldValues>({
           {textarea ? (
             <textarea
               id={name}
-              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900 placeholder-gray-400 min-h-[100px] ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
+              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0F172A] focus:border-[#0F172A] text-sm bg-white text-gray-900 placeholder-gray-400 min-h-[100px] ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
               {...field}
               {...inputProps}
             />
           ) : (
             <input
               id={name}
-              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm bg-white text-gray-900 placeholder-gray-400 ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
+              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0F172A] focus:border-[#0F172A] text-sm bg-white text-gray-900 placeholder-gray-400 ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
               {...field}
               {...inputProps}
             />
