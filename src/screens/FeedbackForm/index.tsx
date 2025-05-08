@@ -28,6 +28,12 @@ export function FeedbackForm() {
     }
   }
 
+  const handleFormChange = () => {
+    if (formStatus === 'error') {
+      resetStatus()
+    }
+  }
+
   return (
     <div className="flex flex-col gap-4">
       <ToggleSwitch
@@ -41,7 +47,7 @@ export function FeedbackForm() {
       <h1 className="text-xl font-bold text-gray-900 mb-1">Share your feedback</h1>
       <p className="text-sm text-gray-500 mb-6">We would love to hear your thoughts.</p>
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} onChange={handleFormChange} noValidate>
         <TextField name="fullName" control={control} label="Full Name" className="mb-4" disabled={isDisabled} inputProps={{ placeholder: 'Insert your full name' }} />
 
         <TextField

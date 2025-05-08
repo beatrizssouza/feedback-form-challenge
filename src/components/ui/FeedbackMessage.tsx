@@ -21,6 +21,8 @@ const FeedbackMessage = ({
         }
       }, 5000)
       return () => clearTimeout(timer)
+    } else {
+      setIsVisible(false)
     }
   }, [show, rest.onHide])
 
