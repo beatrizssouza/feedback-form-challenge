@@ -7,7 +7,16 @@ import { useState } from 'react'
 
 export function FeedbackForm() {
   const [isDisabled, setIsDisabled] = useState(false)
-  const { control, handleSubmit, onSubmit } = useFeedbackForm()
+  const { control, handleSubmit, onSubmit, reset, clearErrors } = useFeedbackForm()
+
+  const handleToggleDisabled = () => {
+    const newDisabled = !isDisabled
+    setIsDisabled(newDisabled)
+    if (newDisabled) {
+      reset()
+      clearErrors()
+    }
+  }
 
   return (
     <div className="flex flex-col gap-4">
@@ -15,7 +24,7 @@ export function FeedbackForm() {
         label="Disabled Mode"
         id="toggle-disabled"
         checked={isDisabled}
-        onChange={() => setIsDisabled(!isDisabled)}
+        onChange={handleToggleDisabled}
         className="self-end"
       />
       <Card>
