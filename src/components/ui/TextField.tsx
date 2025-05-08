@@ -24,20 +24,20 @@ function TextField<T extends FieldValues>({
           {textarea ? (
             <textarea
               id={name}
-              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0F172A] focus:border-[#0F172A] text-sm bg-white text-gray-900 placeholder-gray-400 min-h-[100px] ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
+              className={`block w-full p-3 border text-sm bg-white text-gray-900 placeholder-gray-400 min-h-[100px] rounded-md focus:outline-none focus:ring-2 ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
               {...field}
               {...inputProps}
             />
           ) : (
             <input
               id={name}
-              className={`block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0F172A] focus:border-[#0F172A] text-sm bg-white text-gray-900 placeholder-gray-400 ${fieldState.error ? 'border-red-600 focus:border-red-600 focus:ring-red-600' : ''}`}
+              className={`block w-full p-3 border text-sm bg-white text-gray-900 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 ${fieldState.error ? 'border-orange-500 focus:border-orange-500 focus:ring-orange-500' : 'border-gray-300 focus:ring-[#0F172A] focus:border-[#0F172A]'}`}
               {...field}
               {...inputProps}
             />
           )}
           {fieldState.error && (
-            <p className="mt-1 text-sm text-red-600">{fieldState.error.message}</p>
+            <p className="mt-1 text-sm text-orange-500">{fieldState.error.message}</p>
           )}
         </div>
       )}

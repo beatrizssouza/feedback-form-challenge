@@ -1,21 +1,10 @@
-import { useForm } from 'react-hook-form'
+import { useFeedbackForm } from '../../hooks/useFeedbackForm'
 import Card from '../../components/ui/Card'
 import TextField from '../../components/ui/TextField'
 import Button from '../../components/ui/Button'
-import type { FeedbackFormData } from '../../types/feedback'
 
 export function FeedbackForm() {
-  const { control, handleSubmit } = useForm<FeedbackFormData>({
-    defaultValues: {
-      fullName: '',
-      email: '',
-      feedback: '',
-    },
-  })
-
-  const onSubmit = (data: FeedbackFormData) => {
-    console.log('Form submitted:', data)
-  }
+  const { control, handleSubmit, onSubmit } = useFeedbackForm()
 
   return (
     <Card>
